@@ -41,6 +41,22 @@ public class DownCircleProgressBar extends View {
 
     private int defaultCircleColor = 0, addCircleColor = 0;
 
+    public int getDefaultCircleColor() {
+        return defaultCircleColor;
+    }
+
+    public void setDefaultCircleColor(int defaultCircleColor) {
+        this.defaultCircleColor = defaultCircleColor;
+    }
+
+    public int getAddCircleColor() {
+        return addCircleColor;
+    }
+
+    public void setAddCircleColor(int addCircleColor) {
+        this.addCircleColor = addCircleColor;
+    }
+
     public DownCircleProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
