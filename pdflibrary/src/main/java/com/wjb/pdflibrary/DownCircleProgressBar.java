@@ -1,6 +1,7 @@
 package com.wjb.pdflibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -41,22 +42,6 @@ public class DownCircleProgressBar extends View {
 
     private int defaultCircleColor = 0, addCircleColor = 0;
 
-    public int getDefaultCircleColor() {
-        return defaultCircleColor;
-    }
-
-    public void setDefaultCircleColor(int defaultCircleColor) {
-        this.defaultCircleColor = defaultCircleColor;
-    }
-
-    public int getAddCircleColor() {
-        return addCircleColor;
-    }
-
-    public void setAddCircleColor(int addCircleColor) {
-        this.addCircleColor = addCircleColor;
-    }
-
     public DownCircleProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -64,6 +49,15 @@ public class DownCircleProgressBar extends View {
         mRectF = new RectF();
         mPaint = new Paint();
         mTextPaint = new TextPaint();
+
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.DownCircleProgressBar);
+
+        defaultCircleColor = a.getColor(R.styleable.DownCircleProgressBar_defaultCircleColor,
+                0XFFFFFFFF);
+        addCircleColor= a.getColor(R.styleable.DownCircleProgressBar_addCircleColor, 36);
+
+        a.recycle();
     }
 
     @Override
@@ -81,7 +75,7 @@ public class DownCircleProgressBar extends View {
         // 设置画笔相关属性
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(getResources().getColor(defaultCircleColor));
+        mPaint.setColor(defaultCircleColor);
         canvas.drawColor(Color.TRANSPARENT);
         mPaint.setStrokeWidth(mCircleLineStrokeWidth);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -93,7 +87,7 @@ public class DownCircleProgressBar extends View {
 
         // 绘制圆圈，进度条背景
         canvas.drawArc(mRectF, -90, 360, false, mPaint);
-        mPaint.setColor(getResources().getColor(addCircleColor));
+        mPaint.setColor(addCircleColor);
         canvas.drawArc(mRectF, -90, ((float) mProgress / mMaxProgress) * 360, false, mPaint);
 
         // 绘制进度文案显示

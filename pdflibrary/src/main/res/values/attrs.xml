@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DownCircleProgressBar">
+        <attr name="defaultCircleColor" format="color" />
+        <attr name="addCircleColor" format="color" />
+    </declare-styleable>
+</resources>
